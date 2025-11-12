@@ -1,0 +1,39 @@
+#include "lab82.h"
+#include <gtest/gtest.h>
+
+TEST(CapitalizeAfterDotTests, BasicSentence) {
+    std::wstring text = L"це приклад. ось ще одне речення.";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Це приклад. Ось ще одне речення.");
+}
+
+TEST(CapitalizeAfterDotTests, MultipleSpaces) {
+    std::wstring text = L"перше речення.   друге речення.";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Перше речення.   Друге речення.");
+}
+
+TEST(CapitalizeAfterDotTests, StartsWithoutDot) {
+    std::wstring text = L"приклад без крапки на початку.";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Приклад без крапки на початку.");
+}
+
+TEST(CapitalizeAfterDotTests, NoDots) {
+    std::wstring text = L"це просто текст без крапок";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Це просто текст без крапок");
+}
+
+TEST(CapitalizeAfterDotTests, MixedPunctuation) {
+    std::wstring text = L"привіт! як справи. добре?";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Привіт! Як справи. Добре?");
+}
+
+TEST(CapitalizeAfterDotTests, DotsInsideNumbers) {
+    std::wstring text = L"версія 3.14 є стабільною. перевір.";
+    CapitalizeAfterDot(text);
+    EXPECT_EQ(text, L"Версія 3.14 є стабільною. Перевір.");
+}
+
